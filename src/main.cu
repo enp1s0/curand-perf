@@ -40,10 +40,15 @@ void measure_perf(
 		cudaDeviceSynchronize();
 		const auto start_clock = std::chrono::system_clock::now();
 
-		curandGenerateUniform(curand_gen, data_ptr, num_data);
+		const auto stat = curandGenerateUniform(curand_gen, data_ptr, num_data);
 
 		cudaDeviceSynchronize();
 		const auto end_clock = std::chrono::system_clock::now();
+
+		if (stat == CURAND_STATUS_SUCCESS) {
+			std::cerr << "CURAND ERROR" << std::endl;
+			continue;
+		}
 
 		const auto elapsed_time = std::chrono::duration_cast<std::chrono::nanoseconds>(end_clock - start_clock).count() * 1e-9;
 
