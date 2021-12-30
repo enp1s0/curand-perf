@@ -20,8 +20,8 @@ std::string get_rng_name_str(
 		CASE_RNG_TYPE(CURAND_RNG_QUASI_DEFAULT);
 		CASE_RNG_TYPE(CURAND_RNG_QUASI_SOBOL32);
 		CASE_RNG_TYPE(CURAND_RNG_QUASI_SCRAMBLED_SOBOL32);
-		default:
-			return "Unknown";
+	default:
+		return "Unknown";
 	}
 }
 } // noname namespace
@@ -45,7 +45,7 @@ void measure_perf(
 		cudaDeviceSynchronize();
 		const auto end_clock = std::chrono::system_clock::now();
 
-		const auto elapsed_time = std::chrono::duration_cast<std::chrono::microseconds>(end_clock - start_clock).count() * 1e-6;
+		const auto elapsed_time = std::chrono::duration_cast<std::chrono::nanoseconds>(end_clock - start_clock).count() * 1e-9;
 
 		std::printf("%s,%lu,%e\n",
 				get_rng_name_str(rng_type).c_str(),
@@ -56,13 +56,14 @@ void measure_perf(
 }
 
 int main() {
-		measure_perf(CURAND_RNG_PSEUDO_DEFAULT);
-		measure_perf(CURAND_RNG_PSEUDO_XORWOW);
-		measure_perf(CURAND_RNG_PSEUDO_MRG32K3A);
-		measure_perf(CURAND_RNG_PSEUDO_MTGP32);
-		measure_perf(CURAND_RNG_PSEUDO_MT19937);
-		measure_perf(CURAND_RNG_PSEUDO_PHILOX4_32_10);
-		measure_perf(CURAND_RNG_QUASI_DEFAULT);
-		measure_perf(CURAND_RNG_QUASI_SOBOL32);
-		measure_perf(CURAND_RNG_QUASI_SCRAMBLED_SOBOL32);
+	std::printf("rng,n,time\n");
+	measure_perf(CURAND_RNG_PSEUDO_DEFAULT);
+	measure_perf(CURAND_RNG_PSEUDO_XORWOW);
+	measure_perf(CURAND_RNG_PSEUDO_MRG32K3A);
+	measure_perf(CURAND_RNG_PSEUDO_MTGP32);
+	measure_perf(CURAND_RNG_PSEUDO_MT19937);
+	measure_perf(CURAND_RNG_PSEUDO_PHILOX4_32_10);
+	measure_perf(CURAND_RNG_QUASI_DEFAULT);
+	measure_perf(CURAND_RNG_QUASI_SOBOL32);
+	measure_perf(CURAND_RNG_QUASI_SCRAMBLED_SOBOL32);
 }
