@@ -45,7 +45,7 @@ void measure_perf(
 		cudaDeviceSynchronize();
 		const auto end_clock = std::chrono::system_clock::now();
 
-		if (stat == CURAND_STATUS_SUCCESS) {
+		if (stat != CURAND_STATUS_SUCCESS) {
 			std::cerr << "CURAND ERROR" << std::endl;
 			continue;
 		}
