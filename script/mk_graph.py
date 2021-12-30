@@ -4,19 +4,19 @@ import matplotlib.pyplot as plt
 import pandas as pd
 
 # Output
-output_file_name = "result.pdf"
+output_file_name = "curand-result.pdf"
 
 # The list of `type` in the input csv file
 rng_type = [
         'CURAND_RNG_PSEUDO_DEFAULT',
-		'CURAND_RNG_PSEUDO_XORWOW',
-		'CURAND_RNG_PSEUDO_MRG32K3A',
-		'CURAND_RNG_PSEUDO_MTGP32',
-		'CURAND_RNG_PSEUDO_MT19937',
-		'CURAND_RNG_PSEUDO_PHILOX4_32_10',
-		'CURAND_RNG_QUASI_DEFAULT',
-		'CURAND_RNG_QUASI_SOBOL32',
-		'CURAND_RNG_QUASI_SCRAMBLED_SOBOL32',
+        'CURAND_RNG_PSEUDO_XORWOW',
+        'CURAND_RNG_PSEUDO_MRG32K3A',
+        'CURAND_RNG_PSEUDO_MTGP32',
+        'CURAND_RNG_PSEUDO_MT19937',
+        'CURAND_RNG_PSEUDO_PHILOX4_32_10',
+        'CURAND_RNG_QUASI_DEFAULT',
+        'CURAND_RNG_QUASI_SOBOL32',
+        'CURAND_RNG_QUASI_SCRAMBLED_SOBOL32',
         ]
 
 # Figure config
